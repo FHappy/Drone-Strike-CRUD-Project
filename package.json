@@ -15,5 +15,15 @@
   "bugs": {
     "url": "https://github.com/FHappy/Drone-Strike-CRUD-Project/issues"
   },
-  "homepage": "https://github.com/FHappy/Drone-Strike-CRUD-Project#readme"
+  "homepage": "https://github.com/FHappy/Drone-Strike-CRUD-Project#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "hbs": "^4.0.1",
+    "method-override": "^2.3.8",
+    "mongoose": "^4.9.1",
+    "morgan": "^1.8.1",
+    "pryjs": "^1.0.3"
+  }
 }
