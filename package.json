@@ -1,0 +1,19 @@
+{
+  "name": "drone-strike-crud-project",
+  "version": "1.0.0",
+  "description": "Project 2",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FHappy/Drone-Strike-CRUD-Project.git"
+  },
+  "author": "Hassan Masroor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FHappy/Drone-Strike-CRUD-Project/issues"
+  },
+  "homepage": "https://github.com/FHappy/Drone-Strike-CRUD-Project#readme"
+}
