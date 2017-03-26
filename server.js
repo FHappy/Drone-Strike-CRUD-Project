@@ -1,11 +1,14 @@
 process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
-var express = require('./config/express.js');
-var app = express();
+var mongoose          = require('./config/mongoose.js');
+var express           = require('./config/express.js');
+var db                = mongoose();
+var app               = express();
 
+var port = process.env.PORT || 4000;
 
-app.listen(4000, function() {
-  console.log('listening on port 4000');
+app.listen(port, function() {
+  console.log('server slinging hot data on port ' + port);
 });
 
 module.exports = app;
