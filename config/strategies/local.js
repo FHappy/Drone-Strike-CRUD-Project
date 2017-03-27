@@ -5,11 +5,12 @@ var User                 = require('mongoose').model('User');
 // basiclally taken verbatim from the github page for passport-local npm package
 // with minor modifications
 module.exports = function(passport) {
-  passport.use(new LocalStrategy({
+  passport.use('local', new LocalStrategy({
     usernameField: 'username',
-    passwordField: 'password'
+    passwordField: 'password',
+    passReqToCallback: true
   },
-    function(username, password, done) {
+    function(req, username, password, done) {
       User.findOne({username: username}, function(err, user) {
 
       // })

@@ -26,7 +26,7 @@ var UserSchema = new Schema({
   // passport properties
   // salt: {
   //   type: String
-  // },
+  // // },
   provider: {
     type: String,
     required: true

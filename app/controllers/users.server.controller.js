@@ -38,22 +38,27 @@ exports.delete = function(req, res, next) {
   })
 };
 
-exports.renderLogin = function(req, res, next) {
-  if (!req.user) {
-    res.send('login page');
-  } else {
-    return res.redirect('/');
-  }
+exports.getLogin = function(req, res, next) {
+  res.render('login.hbs');
 };
 
-exports.renderRegister = function(req, res, next) {
-  if (!req.user) {
-    res.send('register page');
-  }
-  return res.redirect('/');
+exports.postLogin = function(req, res, next) {
+  var loginStrategy = passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login',
+    failureFlash: true
+  });
+  return loginStrategy(req, res, next);
 };
 
-exports.register = function(req, res, next) {
+exports.getSignup = function(req, res, next) {
+  res.render('signup.hbs', {
+    message: req.flash('signupMessage')
+  });
+};
+
+exports.postSignup = function(req, res, next) {
+  console.log(req.user);
   if (!req.user) {
     var user = new User(req.body);
     user.provider = 'local';
@@ -67,5 +72,11 @@ exports.register = function(req, res, next) {
   } else {
     return res.redirect('/');
   }
+  // var signupStrategy = passport.authenticate('local-signup', {
+  //   successRedirect: '/',
+  //   failureRedirect: '/signup',
+  //   failureFlash: true
+  // });
+  // return signupStrategy(req, res, next);
   next();
 }

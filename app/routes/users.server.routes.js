@@ -6,16 +6,13 @@ module.exports = function(app) {
   app.route('/users')
      .post(users.create);
 
-  app.route('/register')
-     .get(users.renderRegister)
-     .post(users.register);
+  app.route('/signup')
+     .get(users.getSignup)
+     .post(users.postSignup);
 
   app.route('/users/login')
-     .get(users.renderLogin)
-     .post(passport.authenticate('local', { successRedirect: '/',
-                                            failureRedirect: '/users/login'
-                                          }
-     ));
+     .get(users.getLogin)
+     .post(users.postLogin);
 
   app.route('/users/:userId')
      .get(users.read)
