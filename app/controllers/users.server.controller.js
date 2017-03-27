@@ -69,7 +69,7 @@ exports.postSignup = function(req, res, next) {
       else {
         req.login(user, function(err) {
           if (err) {return next(err);}
-          else {return res.redirect('/');}
+          // else {return res.redirect('/');}
         });
       }
     });
@@ -82,5 +82,6 @@ exports.postSignup = function(req, res, next) {
   //   failureFlash: true
   // });
   // return signupStrategy(req, res, next);
+  return res.redirect('/users/login');
   next();
 }
