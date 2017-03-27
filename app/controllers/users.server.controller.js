@@ -1,4 +1,5 @@
-var User = require('mongoose').model('User');
+var User                  = require('mongoose').model('User');
+var passport              = require('passport');
 
 exports.create = function(req, res, next) {
   var user = new User(req.body);
@@ -35,4 +36,17 @@ exports.delete = function(req, res, next) {
     if (err) {return next(err);}
     res.json(req.user);
   })
+};
+
+exports.renderLogin = function(req, res, next) {
+  if (!req.user) {
+    res.send('login page');
+  } else {
+    return res.redirect('/');
+  }
+};
+
+exports.register = function(req, res, next) {
+  
+  next();
 }
