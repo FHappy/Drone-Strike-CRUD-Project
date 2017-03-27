@@ -63,27 +63,10 @@ exports.getSignup = function(req, res, next) {
 };
 
 exports.postSignup = function(req, res, next) {
-  if (!req.user) {
-    var user = new User(req.body);
-    user.provider = 'local';
-    user.save(function(err) {
-      if (err) {return res.redirect('/signup');}
-      else {
-        req.login(user, function(err) {
-          if (err) {return next(err);}
-          // else {return res.redirect('/');}
-        });
-      }
-    });
-  } else {
-    return res.redirect('/');
-  }
-  // var signupStrategy = passport.authenticate('local-signup', {
-  //   successRedirect: '/',
-  //   failureRedirect: '/signup',
-  //   failureFlash: true
-  // });
-  // return signupStrategy(req, res, next);
-  return res.redirect('/users/login');
-  next();
+  var signupStrategy = passport.authenticate('local-signup', {
+    successRedirect: '/',
+    failureRedirect: '/signup',
+    failureFlash: true
+  });
+  return signupStrategy(req, res, next);
 }

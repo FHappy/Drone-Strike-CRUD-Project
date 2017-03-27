@@ -1,9 +1,6 @@
 var mongoose              = require('mongoose');
 var Schema                = mongoose.Schema;
-// var crypto                = require('crypto');
 var bcrypt                = require('bcrypt-nodejs');
-
-// const saltRounds          = 10;
 
 var UserSchema = new Schema({
   firstName: String,
@@ -23,16 +20,6 @@ var UserSchema = new Schema({
   password: String,
   createdAt: Date,
   updatedAt: Date,
-  // passport properties
-  // salt: {
-  //   type: String
-  // // },
-  provider: {
-    type: String,
-    required: true
-  },
-  providerId: String,
-  providerData: {} //for OAuth providers if I ever get around to it
 });
 
 UserSchema.pre('save', function(next) {
@@ -46,8 +33,6 @@ UserSchema.pre('save', function(next) {
     var salt = bcrypt.genSaltSync(10);
     var hash = bcrypt.hashSync(this.password, salt);
     this.password = hash;
-    // console.log('about to do bcrypt compare method');
-    // console.log(bcrypt.compareSync('default', hash));
   }
 
   next();
@@ -71,15 +56,7 @@ UserSchema.virtual('fullName').get(function() {
   return this.firstName + ' ' + this.lastName;
 });
 
-// new instance methods
-// UserSchema.methods.hashPassword = function(password) {
-//   return crypto.pbkdf2Sync(password, this.salt, 10000, 64)
-//                .toString('base64');
-// }
-
 UserSchema.methods.authenticate = function(password) {
-  // console.log('this.password is ' + this.password);
-  // return this.password === this.hashPassword(password);
   return bcrypt.compareSync(password, this.password);
 };
 
