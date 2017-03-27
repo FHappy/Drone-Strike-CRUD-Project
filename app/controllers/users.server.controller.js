@@ -69,4 +69,9 @@ exports.postSignup = function(req, res, next) {
     failureFlash: true
   });
   return signupStrategy(req, res, next);
-}
+};
+
+exports.getLogout = function(req, res, next) {
+  req.logout();
+  res.redirect('/');
+};

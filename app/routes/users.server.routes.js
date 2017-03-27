@@ -14,10 +14,15 @@ module.exports = function(app) {
      .get(users.getLogin)
      .post(users.postLogin);
 
+  app.route('/users/logout')
+     .get(users.getLogout);
+
   app.route('/users/:userId')
      .get(users.getUserPage)
      .put(users.update)
      .delete(users.delete);
+
+
 
   // middleware is executed before any other middleware that uses this parameter
   // defines the req.user object

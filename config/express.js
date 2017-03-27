@@ -31,6 +31,10 @@ module.exports = function() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(flash());
+  app.use(function (req, res, next) {
+    res.locals.currentUser = req.user;
+    next();
+  });
   app.set('views', './app/views');
   app.set("view engine", "hbs");
 
