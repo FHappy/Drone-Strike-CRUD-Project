@@ -15,7 +15,7 @@ module.exports = function(app) {
      .post(users.postLogin);
 
   app.route('/users/:userId')
-     .get(users.read)
+     .get(users.getUserPage)
      .put(users.update)
      .delete(users.delete);
 

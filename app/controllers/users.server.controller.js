@@ -10,9 +10,11 @@ exports.create = function(req, res, next) {
   });
 };
 
-exports.read = function(req, res, next) {
-  res.json(req.user);
-}
+exports.getUserPage = function(req, res, next) {
+  res.render('users/show.hbs', {
+    user: req.user
+  });
+};
 
 exports.userById = function(req, res, next, id) {
   User.findById(id)
@@ -39,7 +41,7 @@ exports.delete = function(req, res, next) {
 };
 
 exports.getLogin = function(req, res, next) {
-  res.render('login.hbs');
+  res.render('users/login.hbs');
 };
 
 exports.postLogin = function(req, res, next) {
@@ -52,22 +54,24 @@ exports.postLogin = function(req, res, next) {
 };
 
 exports.getSignup = function(req, res, next) {
-  res.render('signup.hbs', {
+  console.log(req.user);
+  res.render('users/signup.hbs', {
     message: req.flash('signupMessage')
   });
 };
 
 exports.postSignup = function(req, res, next) {
-  console.log(req.user);
   if (!req.user) {
     var user = new User(req.body);
     user.provider = 'local';
     user.save(function(err) {
-      if (err) {return res.redirect('/register');}
-      req.login(user, function(err) {
-        if (err) {return next(err);}
-        return res.redirect('/');
-      });
+      if (err) {return res.redirect('/signup');}
+      else {
+        req.login(user, function(err) {
+          if (err) {return next(err);}
+          else {return res.redirect('/');}
+        });
+      }
     });
   } else {
     return res.redirect('/');
