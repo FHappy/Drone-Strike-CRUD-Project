@@ -26,11 +26,9 @@ var StrikeSchema = new Schema({
 });
 
 StrikeSchema.pre('save', function(next) {
-
-
-
   next();
 })
+
 
 StrikeSchema.set('toJSON', {getters: true, virtuals: true});
 

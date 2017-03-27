@@ -1,6 +1,7 @@
 var users = require('../../app/controllers/users.server.controller.js');
 var passport = require('passport');
 // var passport = require('../../config/passport.js');
+var seeds = require('../../config/seeds.js');
 
 module.exports = function(app) {
   app.route('/users')
@@ -22,6 +23,8 @@ module.exports = function(app) {
      .put(users.update)
      .delete(users.delete);
 
+  app.route('/seeds')
+     .get(seeds);
 
 
   // middleware is executed before any other middleware that uses this parameter
