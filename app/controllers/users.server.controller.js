@@ -41,11 +41,13 @@ exports.delete = function(req, res, next) {
 };
 
 exports.getLogin = function(req, res, next) {
-  res.render('users/login.hbs');
+  res.render('users/login.hbs', {
+    message: req.flash('loginMessage')
+  });
 };
 
 exports.postLogin = function(req, res, next) {
-  var loginStrategy = passport.authenticate('local', {
+  var loginStrategy = passport.authenticate('local-login', {
     successRedirect: '/',
     failureRedirect: '/users/login',
     failureFlash: true
