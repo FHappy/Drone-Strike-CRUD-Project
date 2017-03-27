@@ -29,6 +29,7 @@ module.exports = function() {
   }));
   app.use(passport.initialize());
   app.use(passport.session());
+  // require('./passport.js')(passport);
 
   app.set('views', './app/views');
   app.set("view engine", "hbs");

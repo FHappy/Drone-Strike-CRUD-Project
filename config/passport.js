@@ -1,7 +1,10 @@
 var passport             = require('passport');
 var mongoose             = require('mongoose');
+var path                 = require('path');
 
 module.exports = function() {
+  // require('./strategies/local.js');
+
   var User = mongoose.model('User');
 
   passport.serializeUser(function(user, done) {
@@ -16,6 +19,7 @@ module.exports = function() {
   });
 
   //server loads passport config file which then loads strategies file
-  require('./strategies/local.js');
+  // require(path.join(__dirname, 'strategies', 'local.js'));
+  require('./strategies/local.js')(passport);
 
 };

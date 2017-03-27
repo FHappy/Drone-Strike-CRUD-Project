@@ -1,12 +1,17 @@
 var users = require('../../app/controllers/users.server.controller.js');
 var passport = require('passport');
+// var passport = require('../../config/passport.js');
 
 module.exports = function(app) {
   app.route('/users')
      .post(users.create);
 
+  app.route('/register')
+     .get(users.renderRegister)
+     .post(users.register);
+
   app.route('/users/login')
-     .get(function(req, res, next) {res.send('success')})
+     .get(users.renderLogin)
      .post(passport.authenticate('local', { successRedirect: '/',
                                             failureRedirect: '/users/login'
                                           }

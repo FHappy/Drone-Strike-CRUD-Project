@@ -3,7 +3,7 @@ var Schema                = mongoose.Schema;
 // var crypto                = require('crypto');
 var bcrypt                = require('bcrypt-nodejs');
 
-const saltRounds          = 10;
+// const saltRounds          = 10;
 
 var UserSchema = new Schema({
   firstName: String,
@@ -30,9 +30,9 @@ var UserSchema = new Schema({
   provider: {
     type: String,
     required: true
-  }
-  // providerId: String,
-  // providerData: {} //for OAuth providers if I ever get around to it
+  },
+  providerId: String,
+  providerData: {} //for OAuth providers if I ever get around to it
 });
 
 UserSchema.pre('save', function(next) {
