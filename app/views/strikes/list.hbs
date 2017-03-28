@@ -1,0 +1,15 @@
+
+{{#each strikes}}
+  <h2>Number: {{number}}</h2>
+  <ul>
+    <li>narrative:
+      <p>{{narrative}}</p>
+    </li>
+
+    <li>Number of Deaths: {{deaths}}</li>
+    <li>Civilian Casualties: {{civilians}}</li>
+    {{#if bij_summary_short}}
+    <p>{{bij_summary_short}}</p>
+    {{/if}}
+  </ul>
+{{/each}}
