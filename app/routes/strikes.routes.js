@@ -10,6 +10,9 @@ module.exports = function(app) {
   app.route('/strikes/listAsc')
      .get(strikes.getListAsc);
 
+  app.route('/strikes/search/default')
+     .post(strikes.postDefaultQuery);
+
   app.route('/strikes/search/default/:query')
      .get(strikes.getDefaultQuery);
 

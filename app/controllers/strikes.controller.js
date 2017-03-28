@@ -41,6 +41,13 @@ exports.getListAsc = function(req, res, next) {
     });
 };
 
+exports.postDefaultQuery = function(req, res, next) {
+  console.log(req.params);
+  console.log(req.query);
+  var query = req.body.query;
+  res.redirect('/strikes/search/default/' + query);
+}
+
 exports.getDefaultQuery = function(req, res, next) {
   var regex  = new RegExp(req.params.query, "i");
   var narrativeQuery = {narrative: regex};
@@ -51,7 +58,7 @@ exports.getDefaultQuery = function(req, res, next) {
         .sort({number: 'asc'})
         .exec(function(err, strikes) {
           if (err) {console.log(err);}
-          console.log(strikes);
+          // console.log(strikes);
           res.render('strikes/list.hbs', {
             strikes: strikes,
             strikesCount: strikes.length
