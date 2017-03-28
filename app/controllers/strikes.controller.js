@@ -6,7 +6,8 @@ exports.getList = function(req, res, next) {
     .exec(function(err, strikes) {
       if (err) {console.log(err);}
       res.render('strikes/list.hbs', {
-        strikes: strikes
+        strikes: strikes,
+        strikesCount: strikes.length
       });
     });
 };
@@ -15,7 +16,8 @@ exports.getListDesc = function(req, res, next) {
   Strike.find({}).sort({ number: 'desc' })
     .exec(function(err, strikes) {
       res.render('strikes/list.hbs', {
-        strikes: strikes
+        strikes: strikes,
+        strikesCount: strikes.length
       });
     });
 };
@@ -23,9 +25,10 @@ exports.getListDesc = function(req, res, next) {
 exports.getListAsc = function(req, res, next) {
   Strike.find({}).sort({number: 'asc'})
     .exec(function(err, strikes) {
-      console.log(strikes);
+      // console.log(strikes);
       res.render('strikes/list.hbs', {
-        strikes: strikes
+        strikes: strikes,
+        strikesCount: strikes.length
       });
     });
 };

@@ -4,7 +4,8 @@ var mongoose                = require('mongoose');
 
 
 function convertCasualties(deaths) {
-  if (deaths === '') {return [];}
+  if (deaths === 'Unknown') {return ['Unknown'];}
+  if (deaths === '') {return ['Unknown'];}
   var nums = deaths.split('-');
   deaths = nums.map(x => parseInt(x));
   return deaths;
