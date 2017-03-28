@@ -20,6 +20,9 @@ var UserSchema = new Schema({
   password: String,
   createdAt: Date,
   updatedAt: Date,
+  // lists: [
+  //
+  // ]
 });
 
 UserSchema.pre('save', function(next) {
