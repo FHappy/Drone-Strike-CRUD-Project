@@ -20,11 +20,28 @@ exports.getListDesc = function(req, res, next) {
     });
 };
 
-exports. getListAsc = function(req, res, next) {
+exports.getListAsc = function(req, res, next) {
   Strike.find({}).sort({number: 'asc'})
     .exec(function(err, strikes) {
       res.render('strikes/list.hbs', {
         strikes: strikes
       });
-    });  
+    });
 };
+
+exports.getDefaultQuery = function(req, res, next) {
+  var regex  = new RegExp(req.params.query, "i");
+  var narrativeQuery = {narrative: regex};
+  var summaryQuery = {bij_summary_short: regex};
+  // var query = {narrative: regex, bij_summary_short: regex};
+  Strike.find({$or: [narrativeQuery, summaryQuery]})
+        .sort({number: 'asc'})
+        .exec(function(err, strikes) {
+          if (err) {console.log(err);}
+          console.log(strikes);
+          res.render('strikes/list.hbs', {
+            strikes: strikes,
+            strikesCount: strikes.length
+          });
+        });
+}
