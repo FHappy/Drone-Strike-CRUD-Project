@@ -20,6 +20,8 @@ module.exports = function(app) {
   // app.route('/strikes/search/default/:query')
     //  .get()
 
-  app.route('/strikes/show/:strikeId')
+  app.route('/strikes/show/:strikeNumber')
      .get(strikes.getStrikeShow);
+
+  app.param('strikeNumber', strikes.strikeByNumber);
 };

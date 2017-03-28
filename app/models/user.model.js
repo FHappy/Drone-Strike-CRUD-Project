@@ -1,6 +1,14 @@
 var mongoose              = require('mongoose');
 var Schema                = mongoose.Schema;
 var bcrypt                = require('bcrypt-nodejs');
+// var ListSchema            = require('mongoose').model('List');
+
+
+var ListSchema = new Schema({
+  name: String,
+  strikes: Array,
+  comments: Array
+});
 
 var UserSchema = new Schema({
   firstName: String,
@@ -20,9 +28,7 @@ var UserSchema = new Schema({
   password: String,
   createdAt: Date,
   updatedAt: Date,
-  // lists: [
-  //
-  // ]
+  lists: [ListSchema]
 });
 
 UserSchema.pre('save', function(next) {
@@ -69,5 +75,5 @@ UserSchema.set('toJSON', {
   virtuals: true
 });
 
-// var UserModel = mongoose.model('User', UserSchema);
+mongoose.model('List', ListSchema);
 mongoose.model('User', UserSchema);

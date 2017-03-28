@@ -1,5 +1,13 @@
 var Strike = require('mongoose').model('Strike');
 
+exports.strikeByNumber = function(req, res, next, number) {
+  Strike.findOne({number: number})
+    .exec(function(err, strike) {
+      if (err) {console.log(err);}
+      req.strike = strike;
+      next();
+    });
+};
 
 exports.getList = function(req, res, next) {
   Strike.find({})
@@ -52,12 +60,16 @@ exports.getDefaultQuery = function(req, res, next) {
 }
 
 exports.getStrikeShow = function(req, res, next) {
-  Strike.findById(req.params.strikeId)
-    .exec(function(err, strike) {
-      if (err) {console.log(err);}
-      console.log(strike);
-      res.render('strikes/show.hbs', {
-        strike: strike
-      });
-    });
+  // Strike.findById(req.params.strikeId)
+  //   .exec(function(err, strike) {
+  //     if (err) {console.log(err);}
+  //     console.log(strike);
+  //     res.render('strikes/show.hbs', {
+  //       strike: strike
+  //     });
+  //   });
+  console.log(req.strike);
+  res.render('strikes/show.hbs', {
+    strike: req.strike
+  })
 }
