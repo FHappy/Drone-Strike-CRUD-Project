@@ -14,14 +14,10 @@ module.exports = function(app) {
      .post(strikes.postDefaultQuery);
 
   app.route('/strikes/search/default/:query')
-     .get(strikes.getDefaultQuery);
+     .get(strikes.regexQueries, strikes.getDefaultQuery);
 
-  // app.route('/strikes/search/default/:query/sort/:sortQuery')
-  //   .get(strikes.getDefaultSortedQuery);
-
-
-  // app.route('/strikes/search/default/:query')
-    //  .get()
+  app.route('/strikes/search/default/:query/sort/:sortQuery')
+     .get(strikes.regexQueries, strikes.getSortQuery);
 
   app.route('/strikes/show/:strikeNumber')
      .get(strikes.getStrikeShow);

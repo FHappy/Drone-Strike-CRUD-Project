@@ -1,5 +1,6 @@
 var Strike = require('mongoose').model('Strike');
 
+
 exports.strikeByNumber = function(req, res, next, number) {
   Strike.findOne({number: number})
     .exec(function(err, strike) {
@@ -42,19 +43,12 @@ exports.getListAsc = function(req, res, next) {
 };
 
 exports.postDefaultQuery = function(req, res, next) {
-  console.log(req.params);
-  console.log(req.query);
   var query = req.body.query;
   res.redirect('/strikes/search/default/' + query);
-}
+};
 
 exports.getDefaultQuery = function(req, res, next) {
-  var regex  = new RegExp(req.params.query, "i");
-  var narrativeQuery = {narrative: regex};
-  var summaryQuery = {bij_summary_short: regex};
-  var countryQuery = {country: regex};
-  // var query = {narrative: regex, bij_summary_short: regex};
-  Strike.find({$or: [narrativeQuery, summaryQuery, countryQuery]})
+  Strike.find({$or: req.regex})
         .sort({number: 'asc'})
         .exec(function(err, strikes) {
           if (err) {console.log(err);}
@@ -64,19 +58,33 @@ exports.getDefaultQuery = function(req, res, next) {
             strikesCount: strikes.length
           });
         });
-}
+};
+
+exports.getSortQuery = function(req, res, next) {
+  var sortQuery = {};
+  sortQuery[req.params.sortQuery] = 'desc';
+  Strike.find({$or: req.regex})
+        .sort(sortQuery)
+        .exec(function(err, strikes) {
+          if (err) {console.log(err);}
+          res.render('strikes/list.hbs', {
+            strikes: strikes,
+            strikesCount: strikes.length
+          });
+        });
+};
 
 exports.getStrikeShow = function(req, res, next) {
-  // Strike.findById(req.params.strikeId)
-  //   .exec(function(err, strike) {
-  //     if (err) {console.log(err);}
-  //     console.log(strike);
-  //     res.render('strikes/show.hbs', {
-  //       strike: strike
-  //     });
-  //   });
-  console.log(req.strike);
   res.render('strikes/show.hbs', {
     strike: req.strike
   })
+};
+
+exports.regexQueries = function(req, res, next) {
+  var regex  = new RegExp(req.params.query, "i");
+  var narrativeQuery = {narrative: regex};
+  var summaryQuery = {bij_summary_short: regex};
+  var countryQuery = {country: regex};
+  req.regex = [narrativeQuery, summaryQuery, countryQuery];
+  next();
 }
