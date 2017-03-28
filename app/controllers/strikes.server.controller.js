@@ -33,8 +33,9 @@ exports.getDefaultQuery = function(req, res, next) {
   var regex  = new RegExp(req.params.query, "i");
   var narrativeQuery = {narrative: regex};
   var summaryQuery = {bij_summary_short: regex};
+  var countryQuery = {country: regex};
   // var query = {narrative: regex, bij_summary_short: regex};
-  Strike.find({$or: [narrativeQuery, summaryQuery]})
+  Strike.find({$or: [narrativeQuery, summaryQuery, countryQuery]})
         .sort({number: 'asc'})
         .exec(function(err, strikes) {
           if (err) {console.log(err);}
