@@ -50,3 +50,14 @@ exports.getDefaultQuery = function(req, res, next) {
           });
         });
 }
+
+exports.getStrikeShow = function(req, res, next) {
+  Strike.findById(req.params.strikeId)
+    .exec(function(err, strike) {
+      if (err) {console.log(err);}
+      console.log(strike);
+      res.render('strikes/show.hbs', {
+        strike: strike
+      });
+    });
+}

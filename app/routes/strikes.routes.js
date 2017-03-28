@@ -19,4 +19,7 @@ module.exports = function(app) {
 
   // app.route('/strikes/search/default/:query')
     //  .get()
+
+  app.route('/strikes/show/:strikeId')
+     .get(strikes.getStrikeShow);
 };
