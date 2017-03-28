@@ -10,10 +10,13 @@
     <li>narrative:
       <p>{{narrative}}</p>
     </li>
+    {{#if deaths}}
+      <li>Number of Deaths: {{deaths}}</li>
+    {{/if}}
 
-    <li>Number of Deaths: {{deaths}}</li>
     <li>Civilian Casualties: {{civilians}}</li>
     <li>Country: {{country}}</li>
+    <li>Town: {{town}}</li>
     {{#if bij_summary_short}}
     <p>{{bij_summary_short}}</p>
     {{/if}}

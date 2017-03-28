@@ -1,13 +1,35 @@
 var Strike                  = require('mongoose').model('Strike');
 var request                 = require('xhr-request');
 
-module.exports = function(req, res, next) {
+function convertCasualties(deaths) {
+  if (deaths === '') {return [];}
+  var nums = deaths.split('-');
+  deaths = nums.map(x => parseInt(x));
+  return deaths;
+}
 
+
+
+module.exports = function(req, res, next) {
+  // mongoose.connection.db.dropCollection('strikes')
+  //   .exec(function(err, result) {
+  //     if (err) {console.log(err);}
+  //
+  //   }
   request('http://api.dronestre.am/data', {
     json: true
   }, function(err, data) {
     if (err) {throw err;}
     var strikes = data.strike;
+    strikes.map(function(strike) {
+      strike.deaths                 = convertCasualties(strike.deaths);
+      strike.deaths_min             = convertCasualties(strike.deaths_min);
+      strike.deaths_mastrike        = convertCasualties(strike.deaths_max);
+      strike.civilians              = convertCasualties(strike.civilians);
+      strike.injuries               = convertCasualties(strike.injuries);
+      strike.children               = convertCasualties(strike.children);
+    });
+
     for (var i = 0; i < strikes.length; i++) {
       var newStrike = new Strike({
         number: strikes[i].number,
@@ -32,7 +54,7 @@ module.exports = function(req, res, next) {
         articles: strikes[i].articles,
         names: strikes[i].names
       });
-      
+
       newStrike.save(function(err) {
         if (err) {console.log(err);}
       });

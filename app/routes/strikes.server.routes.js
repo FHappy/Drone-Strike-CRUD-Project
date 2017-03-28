@@ -13,6 +13,10 @@ module.exports = function(app) {
   app.route('/strikes/search/default/:query')
      .get(strikes.getDefaultQuery);
 
+  // app.route('/strikes/search/default/:query/sort/:sortQuery')
+  //   .get(strikes.getDefaultSortedQuery);
+
+
   // app.route('/strikes/search/default/:query')
     //  .get()
 };
