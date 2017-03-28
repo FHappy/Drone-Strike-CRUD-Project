@@ -23,6 +23,7 @@ exports.getListDesc = function(req, res, next) {
 exports.getListAsc = function(req, res, next) {
   Strike.find({}).sort({number: 'asc'})
     .exec(function(err, strikes) {
+      console.log(strikes);
       res.render('strikes/list.hbs', {
         strikes: strikes
       });

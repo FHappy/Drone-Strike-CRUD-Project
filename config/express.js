@@ -38,9 +38,9 @@ module.exports = function() {
   app.set('views', './app/views');
   app.set("view engine", "hbs");
 
-  require('../app/routes/index.server.routes.js')(app);
-  require('../app/routes/users.server.routes.js')(app);
-  require('../app/routes/strikes.server.routes.js')(app);
+  require('../app/routes/index.routes.js')(app);
+  require('../app/routes/users.routes.js')(app);
+  require('../app/routes/strikes.routes.js')(app);
 
   app.use(express.static('./public'));
 

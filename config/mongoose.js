@@ -6,8 +6,8 @@ module.exports = function() {
   mongoose.connect(config.db);
   var db = mongoose.connection;
 
-  require('../app/models/user.server.model.js');
-  require('../app/models/strike.server.model.js');
+  require('../app/models/user.model.js');
+  require('../app/models/strike.model.js');
 
   db.on('error', function(err) {
     console.log(err);

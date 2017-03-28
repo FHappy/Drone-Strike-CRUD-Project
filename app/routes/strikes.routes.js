@@ -1,4 +1,4 @@
-var strikes = require('../../app/controllers/strikes.server.controller.js');
+var strikes = require('../../app/controllers/strikes.controller.js');
 
 module.exports = function(app) {
   app.route('/strikes/list')

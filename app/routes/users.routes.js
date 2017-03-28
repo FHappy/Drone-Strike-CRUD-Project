@@ -1,4 +1,4 @@
-var users = require('../../app/controllers/users.server.controller.js');
+var users = require('../../app/controllers/users.controller.js');
 var passport = require('passport');
 // var passport = require('../../config/passport.js');
 var seeds = require('../../config/seeds.js');

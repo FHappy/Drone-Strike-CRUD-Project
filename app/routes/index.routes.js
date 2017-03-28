@@ -1,4 +1,4 @@
-var index = require('../controllers/index.server.controller');
+var index = require('../controllers/index.controller');
 
 module.exports = function(app) {
   app.get('/', index.index);
