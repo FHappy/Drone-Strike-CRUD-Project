@@ -44,7 +44,10 @@ exports.getListAsc = function(req, res, next) {
 
 exports.postDefaultQuery = function(req, res, next) {
   var query = req.body.query;
-  res.redirect('/strikes/search/default/' + query);
+  if (!query) {
+    res.redirect('/strikes/search/ ');
+  }
+  res.redirect('/strikes/search/' + query);
 };
 
 exports.getDefaultQuery = function(req, res, next) {
@@ -81,6 +84,9 @@ exports.getStrikeShow = function(req, res, next) {
 };
 
 exports.regexQueries = function(req, res, next) {
+  // if (req.params.query === 'default') {
+  //   req.params.query = '';
+  // }
   var regex  = new RegExp(req.params.query, "i");
   var narrativeQuery = {narrative: regex};
   var summaryQuery = {bij_summary_short: regex};
