@@ -35,43 +35,6 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <form role="search" action="/strikes/search/" method="POST">
-                <div class="input-group" id="death-sort">
-                    <input type="text" class="form-control" placeholder="Search" name="query">
-                    <!-- shit   -->
-                      <div class="input-group-btn">
-                        <div class="btn-group" role="group">
-                            <div class="dropdown dropdown-lg">
-                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Sort:
-                                  <span class="caret"></span>
-                                </button>
-                                <div class="dropdown-menu dropdown-menu-right" role="menu">
-                                    <!-- <div class="form-horizontal" role="form">
-                                      <div class="form-group"> -->
-                                        <!-- <label for="filter">Sort by:</label> -->
-                                        <select id="deathSelect" class="form-control" name="sortQuery">
-                                            <option value="number" selected="true">Date</option>
-                                            <option value="deaths">Deaths</option>
-                                            <option value="casualties">Civilian Casualties</option>
-                                            <option value="children">Child Casualties</option>
-                                            <option value="country">Country</option>
-                                        </select>
-                                      <!-- </div>
-                                    </div> -->
-                                </div>
-                            </div>
-                            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                        </div>
-                      </div>
-                      <!-- shit -->
-                </div>
-            </form>
-        </div>
-      </div>
-    </div>
 
     <main class="container">
       {{{body}}}
