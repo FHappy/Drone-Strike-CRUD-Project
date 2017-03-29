@@ -1,3 +1,4 @@
+
 <!-- SEARCH BAR -->
 <div class="container">
   <div class="row">
@@ -53,7 +54,7 @@
           {{narrative}}
           {{#if ../user}}
           <form action="/users/{{../user}}/strikes/{{number}}/addStrike" method="post">
-            <button type="submit" class="btn btn-default btn-sm">
+            <button type="submit" id="addStrikeButton" class="btn btn-default btn-sm">
                 <span class="glyphicon glyphicon-plus"></span> Add Strike
             </button>
           </form>
@@ -61,7 +62,7 @@
         </td>
         <td>{{deaths}}</td>
         <td>{{country}}</td>
-        <td>{{date}}</td>
+        <td><span class="momentDate">{{date}}</span></td>
       </tr>
     {{/each}}
   </tbody>
@@ -75,8 +76,6 @@
 
 
   <h1></h1>
-  <a href="/strikes/show/{{number}}"><h2>Number: {{number}}</h2></a>
-
 
 
 <!-- individual strike show modal -->
@@ -103,11 +102,10 @@
               {{#if bij_summary_short}}
               <p>{{bij_summary_short}}</p>
               {{/if}}
-
-
             </ul>
           </div>
           <div class="modal-footer">
+            <a href="/strikes/show/{{number}}">More Info</a>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>

@@ -1,3 +1,4 @@
+
 var users = require('../../app/controllers/users.controller.js');
 var passport = require('passport');
 // var passport = require('../../config/passport.js');
@@ -22,6 +23,12 @@ module.exports = function(app) {
      .get(users.getUserPage)
      .put(users.update)
      .delete(users.delete);
+
+  app.route('/users/:userId/edit')
+     .get(users.getUserEdit);
+
+  app.route('/users/:userId/list/:listIndex')
+     .post(users.addComment);
 
   app.route('/seeds')
      .get(seeds);

@@ -1,3 +1,5 @@
+
+
 var mongoose              = require('mongoose');
 var Schema                = mongoose.Schema;
 var bcrypt                = require('bcrypt-nodejs');
@@ -30,12 +32,12 @@ var UserSchema = new Schema({
   updatedAt: Date,
   // lists: [ListSchema]
   list: {
-    type: Array,
-    default: [{
+    type: Object,
+    default: {
       name: '',
       strikes: [],
-      comments: []
-    }]
+      comments: [[]]
+    }
   }
 });
 
@@ -74,6 +76,8 @@ UserSchema.virtual('fullName').get(function() {
 });
 
 UserSchema.methods.authenticate = function(password) {
+  console.log('made it to password authentication, bcrypt result is ');
+  console.log(bcrypt.compareSync(password, this.password));
   return bcrypt.compareSync(password, this.password);
 };
 

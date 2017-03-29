@@ -1,3 +1,4 @@
+
 var User                  = require('mongoose').model('User');
 var List                  = require('mongoose').model('List');
 var passport              = require('passport');
@@ -13,7 +14,8 @@ exports.create = function(req, res, next) {
 
 exports.getUserPage = function(req, res, next) {
   res.render('users/show.hbs', {
-    user: req.user
+    user: req.user,
+    comments: req.user.list.comments
   });
 };
 
@@ -25,6 +27,12 @@ exports.userById = function(req, res, next, id) {
       next();
     });
 };
+
+exports.getUserEdit = function(req, res, next) {
+  res.render('users/edit.hbs', {
+    user: req.user
+  });
+}
 
 exports.update = function(req, res, next) {
   User.findByIdAndUpdate(req.user.id, req.body)
@@ -81,13 +89,26 @@ exports.addStrike = function(req, res, next) {
   var user = req.user;
   console.log(user);
   console.log(req.strike);
-  // if (!user.lists) {
-  //   var newList = new List({
-  //
-  //   })
-  // }
-  console.log(user.list[0].strikes);
-  user.list[0].strikes.push(req.strike);
-  // next();
-  res.redirect('/users/' + user.id);
+  console.log(user.list.strikes);
+  user.list.strikes.push(req.strike);
+  user.save(function(err) {
+    if (err) {console.log(err);}
+    console.log('new user details');
+    console.log(user);
+    res.redirect('/users/' + user.id);
+  });
 };
+
+exports.addComment = function(req, res, next) {
+  var user = req.user;
+  var index = req.params.listIndex;
+  console.log(user);
+  console.log(req.strike);
+  console.log(user.list.strikes);
+  user.list.comments[index].push(req.body.comment);
+  user.save(function(err) {
+    if (err) {console.log(err);}
+    console.log('user saved');
+    res.redirect('/users/' + user.id);
+  });
+}
