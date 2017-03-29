@@ -86,7 +86,7 @@ exports.getLogout = function(req, res, next) {
 };
 
 exports.addStrike = function(req, res, next) {
-  var user = req.user;
+  // var user = req.user;
   console.log(user);
   console.log(req.strike);
   console.log(user.list.strikes);
@@ -99,7 +99,7 @@ exports.addStrike = function(req, res, next) {
         console.log(user);
         res.redirect('/users/' + user.id);
     });
-  
+
   });
 };
 
