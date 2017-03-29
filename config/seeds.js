@@ -4,10 +4,11 @@ var mongoose                = require('mongoose');
 
 
 function convertCasualties(deaths) {
-  if (deaths === 'Unknown') {return ['Unknown'];}
-  if (deaths === '') {return ['Unknown'];}
+  // if (deaths === 'Unknown') {return [];}
+  // if (deaths === '') {return [];}
   var nums = deaths.split('-');
   deaths = nums.map(x => parseInt(x));
+  if (deaths[0] === NaN) {deaths = [];}
   return deaths;
 }
 

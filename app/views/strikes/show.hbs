@@ -11,7 +11,13 @@
     <li>Number of Deaths: {{strike.deaths}}</li>
     <li>Minimum Number of Deaths: {{strike.deaths_min}}</li>
     <li>Maximum Number of Deaths: {{strike.deaths_max}}</li>
-    <li>Civilians Killed: {{strike.civilians}}</li>
+    {{#each strike.civilians}}
+      {{#if this}}
+      <li>Civilians Killed: {{strike.civilians}}</li>
+      {{else}}
+      <li>Civilians Killed: Unknown</li>
+      {{/if}}
+    {{/each}}
     <li>Number of Injuries: {{strike.injuries}}</li>
     <li>Number of Children Killed: {{strike.children}}</li>
     <li>Intended Target: {{strike.target}}</li>
@@ -23,19 +29,10 @@
 </div>
 
 <div class="row">
-<!-- <iframe
-  width="450"
-  height="250"
-  frameborder="0" style="border:0"
-  src="https://www.google.com/maps/embed/v1/search?key=AIzaSyAmYGEhY8eAhN0uAZIvLkKhDXSTuTt9ar4&q=record+stores+in+Seattle" allowfullscreen>
-</iframe> -->
   <div class="col-lg-12">
     <div id="map"></div>
   </div>
-
 </div>
-<!-- <img src="https://maps.googleapis.com/maps/api/staticmap?center={{strike.lat}},{{strike.lon}}&zoom=12&size=400x400&maptype=satellite&key=AIzaSyAmYGEhY8eAhN0uAZIvLkKhDXSTuTt9ar4"
-alt="Strike Google Satellite View"> -->
 
 <script>
   function initMap() {

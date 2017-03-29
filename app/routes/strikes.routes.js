@@ -11,6 +11,7 @@ module.exports = function(app) {
      .get(strikes.getListAsc);
 
   app.route('/strikes/search/default')
+     .get(strikes.getListAsc)
      .post(strikes.postDefaultQuery);
 
   app.route('/strikes/search/default/:query')
