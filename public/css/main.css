@@ -3,3 +3,21 @@
   width: 100%;
   overflow: auto;
 }
+
+.dropdown.dropdown-lg .dropdown-menu {
+    margin-top: -1px;
+    padding: 6px 20px;
+}
+
+.input-group-btn .btn-group {
+    display: flex;
+}
+
+@media screen and (min-width: 768px) {
+    .dropdown.dropdown-lg {
+        position: static;
+    }
+    .dropdown.dropdown-lg .dropdown-menu {
+        min-width: 500px;
+    }
+}

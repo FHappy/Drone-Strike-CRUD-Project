@@ -44,10 +44,11 @@ exports.getListAsc = function(req, res, next) {
 
 exports.postDefaultQuery = function(req, res, next) {
   var query = req.body.query;
+  var sortQuery = req.body.sortQuery;
   if (!query) {
     res.redirect('/strikes/search/ ');
   }
-  res.redirect('/strikes/search/' + query);
+  res.redirect('/strikes/search/' + query + '/sort/' + sortQuery);
 };
 
 exports.getDefaultQuery = function(req, res, next) {
