@@ -90,12 +90,16 @@ exports.addStrike = function(req, res, next) {
   console.log(user);
   console.log(req.strike);
   console.log(user.list.strikes);
-  user.list.strikes.push(req.strike);
-  user.save(function(err) {
-    if (err) {console.log(err);}
-    console.log('new user details');
-    console.log(user);
-    res.redirect('/users/' + user.id);
+  User.findById(req.user.id)
+    .exec(function(err, user) {
+      user.list.strikes.push(req.strike);
+      user.save(function(err) {
+        if (err) {console.log(err);}
+        console.log('new user details');
+        console.log(user);
+        res.redirect('/users/' + user.id);
+    });
+  
   });
 };
 

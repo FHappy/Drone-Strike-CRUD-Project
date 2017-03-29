@@ -4,7 +4,8 @@ var mongoose              = require('mongoose');
 var Schema                = mongoose.Schema;
 var bcrypt                = require('bcrypt-nodejs');
 // var ListSchema            = require('mongoose').model('List');
-
+var StrikeSchema = require('./strike.model.js');
+// var Strike          = require('mongoose').model('Strike');
 
 var ListSchema = new Schema({
   name: String,
@@ -35,7 +36,7 @@ var UserSchema = new Schema({
     type: Object,
     default: {
       name: '',
-      strikes: [],
+      strikes: [StrikeSchema],
       comments: [[]]
     }
   }

@@ -29,9 +29,10 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="user-menu">
           <ul class="nav navbar-nav">
-            <li><a href="/strikes/getListAsc">Strikes</a></li>
+            <li><a href="/strikes/listAsc">Strikes</a></li>
             {{#if currentUser}}
-              <li><a href="/users/logout">Logout {{currentUser.username}}</a></li>
+              <li><a href="/users/{{currentUser.id}}">{{currentUser.username}}</a></li>
+              <li><a href="/users/logout">Logout</a></li>
             {{else}}
               <li><a href="/users/login">Login</a></li>
               <li><a href="/signup">Signup</a></li>
