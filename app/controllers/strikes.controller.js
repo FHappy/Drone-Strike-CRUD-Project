@@ -24,21 +24,36 @@ exports.getList = function(req, res, next) {
 exports.getListDesc = function(req, res, next) {
   Strike.find({}).sort({ number: 'desc' })
     .exec(function(err, strikes) {
-      res.render('strikes/list.hbs', {
-        strikes: strikes,
-        strikesCount: strikes.length
-      });
+      if (req.session.passport) {
+        res.render('strikes/list.hbs', {
+          strikes: strikes,
+          strikesCount: strikes.length,
+          user: req.session.passport.user
+        });
+      } else {
+        res.render('strikes/list.hbs', {
+          strikes: strikes,
+          strikesCount: strikes.length
+        });
+      }
     });
 };
 
 exports.getListAsc = function(req, res, next) {
   Strike.find({}).sort({number: 'asc'})
     .exec(function(err, strikes) {
-      // console.log(strikes);
-      res.render('strikes/list.hbs', {
-        strikes: strikes,
-        strikesCount: strikes.length
-      });
+      if (req.session.passport) {
+        res.render('strikes/list.hbs', {
+          strikes: strikes,
+          strikesCount: strikes.length,
+          user: req.session.passport.user
+        });
+      } else {
+        res.render('strikes/list.hbs', {
+          strikes: strikes,
+          strikesCount: strikes.length
+        });
+      }
     });
 };
 
@@ -55,12 +70,18 @@ exports.getDefaultQuery = function(req, res, next) {
   Strike.find({$or: req.regex})
         .sort({number: 'asc'})
         .exec(function(err, strikes) {
-          if (err) {console.log(err);}
-          // console.log(strikes);
-          res.render('strikes/list.hbs', {
-            strikes: strikes,
-            strikesCount: strikes.length
-          });
+          if (req.session.passport) {
+            res.render('strikes/list.hbs', {
+              strikes: strikes,
+              strikesCount: strikes.length,
+              user: req.session.passport.user
+            });
+          } else {
+            res.render('strikes/list.hbs', {
+              strikes: strikes,
+              strikesCount: strikes.length
+            });
+          }
         });
 };
 
@@ -70,11 +91,18 @@ exports.getSortQuery = function(req, res, next) {
   Strike.find({$or: req.regex})
         .sort(sortQuery)
         .exec(function(err, strikes) {
-          if (err) {console.log(err);}
-          res.render('strikes/list.hbs', {
-            strikes: strikes,
-            strikesCount: strikes.length
-          });
+          if (req.session.passport) {
+            res.render('strikes/list.hbs', {
+              strikes: strikes,
+              strikesCount: strikes.length,
+              user: req.session.passport.user
+            });
+          } else {
+            res.render('strikes/list.hbs', {
+              strikes: strikes,
+              strikesCount: strikes.length
+            });
+          }
         });
 };
 
@@ -85,13 +113,10 @@ exports.getStrikeShow = function(req, res, next) {
 };
 
 exports.regexQueries = function(req, res, next) {
-  // if (req.params.query === 'default') {
-  //   req.params.query = '';
-  // }
   var regex  = new RegExp(req.params.query, "i");
   var narrativeQuery = {narrative: regex};
   var summaryQuery = {bij_summary_short: regex};
   var countryQuery = {country: regex};
   req.regex = [narrativeQuery, summaryQuery, countryQuery];
   next();
-}
+};

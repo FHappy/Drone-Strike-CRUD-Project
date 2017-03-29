@@ -26,6 +26,9 @@ module.exports = function(app) {
   app.route('/seeds')
      .get(seeds);
 
+  app.route('/users/:userId/strikes/:strikeNumber/addStrike')
+     .post(users.addStrike);
+
 
   // middleware is executed before any other middleware that uses this parameter
   // defines the req.user object

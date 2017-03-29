@@ -1,4 +1,5 @@
 var User                  = require('mongoose').model('User');
+var List                  = require('mongoose').model('List');
 var passport              = require('passport');
 
 exports.create = function(req, res, next) {
@@ -74,4 +75,19 @@ exports.postSignup = function(req, res, next) {
 exports.getLogout = function(req, res, next) {
   req.logout();
   res.redirect('/');
+};
+
+exports.addStrike = function(req, res, next) {
+  var user = req.user;
+  console.log(user);
+  console.log(req.strike);
+  // if (!user.lists) {
+  //   var newList = new List({
+  //
+  //   })
+  // }
+  console.log(user.list[0].strikes);
+  user.list[0].strikes.push(req.strike);
+  // next();
+  res.redirect('/users/' + user.id);
 };
