@@ -35,51 +35,77 @@
   </div>
 </div>
 
+<table class="table">
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>U.S. Narrative</th>
+      <th>Deaths</th>
+      <th>Country</th>
+      <th>Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each strikes}}
+      <tr id="strikeRow{{number}}">
+        <td>{{number}}</td>
+        <td>
+          {{narrative}}
+          {{#if ../user}}
+          <form action="/users/{{../user}}/strikes/{{number}}/addStrike" method="post">
+            <button type="submit" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-plus"></span> Add Strike
+            </button>
+          </form>
+          {{/if}}
+        </td>
+        <td>{{deaths}}</td>
+        <td>{{country}}</td>
+        <td>{{date}}</td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
 <!-- END SEARCH BAR -->
 
 {{#if strikesCount}}
 <h1>Results: {{strikesCount}}</h1>
 {{/if}}
 
-{{#each strikes}}
+
 
   <h1></h1>
   <a href="/strikes/show/{{number}}"><h2>Number: {{number}}</h2></a>
-  <ul>
-    <li>narrative:
-      <p>{{narrative}}</p>
-    </li>
-    {{#if deaths}}
-      <li>Number of Deaths: {{deaths}}</li>
-    {{/if}}
 
-    <li>Civilian Casualties: {{civilians}}</li>
-    <li>Country: {{country}}</li>
-    <li>Town: {{town}}</li>
-    {{#if bij_summary_short}}
-    <p>{{bij_summary_short}}</p>
-    {{/if}}
 
-    {{#if ../user}}
-    <form action="/users/{{../user}}/strikes/{{number}}/addStrike" method="post">
-      <button type="submit" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-plus"></span> Add Strike
-      </button>
-    </form>
-    {{/if}}
-  </ul>
-{{/each}}
 
 <!-- individual strike show modal -->
-<div id="strikeShowModal" class="modal fade" role="dialog">
+{{#each strikes}}
+<div id="strikeShowModal{{number}}" class="modal fade" role="dialog">
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal">&times;</button>
-            <h4 class="modal-title">Game Over!</h4>
+            <h4 class="modal-title">Strike #{{number}}</h4>
           </div>
           <div class="modal-body" id="strikeShowModalBody">
+            <ul>
+              <li>narrative:
+                <p>{{narrative}}</p>
+              </li>
+              {{#if deaths}}
+                <li>Number of Deaths: {{deaths}}</li>
+              {{/if}}
 
+              <li>Civilian Casualties: {{civilians}}</li>
+              <li>Country: {{country}}</li>
+              <li>Town: {{town}}</li>
+              {{#if bij_summary_short}}
+              <p>{{bij_summary_short}}</p>
+              {{/if}}
+
+
+            </ul>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -87,3 +113,4 @@
         </div>
       </div>
     </div>
+{{/each}}

@@ -21,3 +21,33 @@
         min-width: 500px;
     }
 }
+
+#splashChart {
+  height: auto;
+  width: auto;
+}
+
+body {
+  background-color: rgb(19, 23, 31);
+  /*color: rgb(36, 38, 45);
+  color: rgb(150, 18, 39);*/
+  color: #fff;
+}
+
+.page-header h1 {
+  text-align: center;
+  text-decoration: underline;
+  size: 50px;
+  font: Helvetica;
+}
+
+.row {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+   background-color: rgb(19, 23, 31);
+}
