@@ -120,3 +120,21 @@ exports.regexQueries = function(req, res, next) {
   req.regex = [narrativeQuery, summaryQuery, countryQuery];
   next();
 };
+
+exports.chartData = function() {
+  Strike.find({})
+    .sort({number: 'asc'})
+    .exec(function(err, strikes) {
+      if (err) {console.log(err);}
+      var data = [];
+      strikes.forEach(function(x) {
+        var xData = x.date;
+        if (x.deaths.length === 2 && x.deaths[0] > x.deaths[1]) {
+          var yData = x.deaths[0];
+        } else {var yData = x.deaths[1];}
+        data.push([xData, yData]);
+      });
+
+      return data;
+    });
+}
