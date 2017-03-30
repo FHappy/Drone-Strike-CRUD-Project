@@ -33,27 +33,27 @@ Once the data has been fully parsed and saved to a Mongoose model, sort function
 
 #### General MEN stack npm packages were used including:
 * Express 
-  Routing middleware based on CommonJS
+  >Routing middleware based on CommonJS
 * body-parser 
-  Parse data from the body of client requests
+  >Parse data from the body of client requests
 * morgan 
-  Basic logging package.
+  >Basic logging package.
 * express=session
-  Handle session data.
+  >Handle session data.
 * mongoose 
-  Used to frustratingly handle mongodb data entirely in javascript.
+  >Used to frustratingly handle mongodb data entirely in javascript.
 * hbs 
-  Render views and inject data from our javascript middleware.
+  >Render views and inject data from our javascript middleware.
 
 #### Additonal packages used:
 * passport 
-  Provide authentication by serializing user upon login and deserializing them upon logout. Also easily allows                 the current user to be accessed via req.session.passport.user and is stored as req.user when using passport                 middleware. Only the local strategy was used.
+  >Provide authentication by serializing user upon login and deserializing them upon logout. Also easily allows                 the current user to be accessed via req.session.passport.user and is stored as req.user when using passport                 middleware. Only the local strategy was used.
 * connect-flash
-  Passport also uses the connect-flash module which lets us unobtrusively pass warnings bundled with                           sucessful or failing redirect options after authentication.
+  >Passport also uses the connect-flash module which lets us unobtrusively pass warnings bundled with                           sucessful or failing redirect options after authentication.
 * xhr-request
-  Extremely tiny and intuitive XMLHTTP/HTTPS request client. I can't stress how easy this was to use compared to other         options available on npm.
+  >Extremely tiny and intuitive XMLHTTP/HTTPS request client. I can't stress how easy this was to use compared to other         options available on npm.
 * highcharts
-  Also certainly a highpoint of the new packages I learned to use. Highcharts allows for customizable and surprisingly         intricate charts renered directly to the html page. Charts are also slightly interactive and developers can customize       everything from color to tooltip details.
+  >Also certainly a highpoint of the new packages I learned to use. Highcharts allows for customizable and surprisingly         intricate charts renered directly to the html page. Charts are also slightly interactive and developers can customize       everything from color to tooltip details.
 
 
 ## Unsolved Goals
