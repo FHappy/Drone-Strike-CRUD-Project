@@ -7,7 +7,7 @@ You can visit the deployed website on heroku [here](https://drone-strike-crud-pr
 * [Heroku](https://drone-strike-crud-project.herokuapp.com/)
 * [Trello](https://trello.com/b/fHxb9yu6)
 * [Wireframes](http://i.imgur.com/1P9uJaL.jpg)
-* [Portfolio (in progress)](http://editor-dorothy-25778.bitballoon.com/)
+* [Portfolio (in progress)](http://hassanmasroor.bitballoon.com/)
 ## Functionality
 
 The site takes the JSON data and parses it such that it is updated often and allows for both qualitative queries and sorting of all reported casualties. Casualties in the API are represented as Strings and often included hyphens to represent a range of estimated casualties. For example:
